@@ -109,11 +109,11 @@ def build_final_dictionary(city_dictionary, city_name:str, coordinates, database
     Return:
     citi_dictionary
     """
-    if city_name is "Madrid":
+    if city_name == "Madrid":
         city_dictionary[city_name] = build_madrid_dictionary_list(coordinates, database, distance)
-    if city_name is "Sevilla":
+    if city_name == "Sevilla":
         city_dictionary[city_name] = build_sevilla_dictionary_list(coordinates, database, distance)
-    if city_name is "Barcelona":
+    if city_name == "Barcelona":
         city_dictionary[city_name] = build_barcelona_dictionary_list(coordinates, database, distance)
    
     return city_dictionary
@@ -136,7 +136,7 @@ def build_madrid_dictionary_list(coordinate, database, distance):
     places_count = []
 
     query_station = {"location": {"$near": {"$geometry": coordinate, "$maxDistance": distance}},
-        'nombre': re.compile("stac", re.IGNORECASE)}
+        'nombre': re.compile("cerc", re.IGNORECASE)}
     query_starbucks = {"location": {"$near": {"$geometry": coordinate, "$maxDistance": distance}},
         'nombre': re.compile("Starbu", re.IGNORECASE)}
     query_doggy = {"location": {"$near": {"$geometry": coordinate, "$maxDistance": distance}},
@@ -157,7 +157,7 @@ def build_madrid_dictionary_list(coordinate, database, distance):
     places_count.append(vegan_length)
 
     #Añadimos como ultimo elemento de la lista la suma de la cantidad de elementos por su valor
-    places_count.append(station_lenght*3 + starbucks_lenght*2 + pets_lenght*1 + vegan_length*2)
+    places_count.append(station_lenght*3 + starbucks_lenght*2 + pets_lenght*1 + vegan_length*3)
 
     return places_count
 
@@ -167,8 +167,8 @@ def build_sevilla_dictionary_list(coordinate, database, distance):
     """
     This function makes queries for stations, starbucks and pet hairdressers in a city and it stores
     the results in a list. 
-    (There is a function for each city because the query that have been made to look for the same type 
-    of place had to be different)
+    (There is a function for each city because the queries that have been made to look for the same type 
+    of place needed to be different)
 
     Args:
     coordinate, database, distance
@@ -180,7 +180,7 @@ def build_sevilla_dictionary_list(coordinate, database, distance):
     places_count = []
 
     query_station = {"location": {"$near": {"$geometry": coordinate, "$maxDistance": distance}},
-        'nombre': re.compile("stac", re.IGNORECASE)}
+        'nombre': re.compile("renfe", re.IGNORECASE)}
     query_starbucks = {"location": {"$near": {"$geometry": coordinate, "$maxDistance": distance}},
         'nombre': re.compile("Starbu", re.IGNORECASE)}
     query_doggy = {"location": {"$near": {"$geometry": coordinate, "$maxDistance": distance}},
@@ -201,7 +201,7 @@ def build_sevilla_dictionary_list(coordinate, database, distance):
     places_count.append(vegan_length)
 
     #Añadimos como ultimo elemento de la lista la suma de la cantidad de elementos por su valor
-    places_count.append(station_lenght*3 + starbucks_lenght*2 + pets_lenght*1 + vegan_length*2)
+    places_count.append(station_lenght*3 + starbucks_lenght*2 + pets_lenght*1 + vegan_length*3)
 
     return places_count
 
@@ -245,7 +245,7 @@ def build_barcelona_dictionary_list(coordinate, database, distance):
     places_count.append(vegan_length)
 
     #Añadimos como ultimo elemento de la lista la suma de la cantidad de elementos por su valor
-    places_count.append(station_lenght*3 + starbucks_lenght*2 + pets_lenght*1 + vegan_length*2)
+    places_count.append(station_lenght*3 + starbucks_lenght*2 + pets_lenght*1 + vegan_length*3)
 
     return places_count
 
