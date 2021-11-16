@@ -101,7 +101,7 @@ def build_final_dictionary(city_dictionary, city_name:str, coordinates, database
     """
     This function adds elements to a dictionary from queries made for specified cities.
     The dictionary contains the total number of stations, starbucks and pet hairdressers for
-    each city and the quality of the city based on a score defined by myself. OLÉ YO!!
+    each city and the quality of the city based on a score defined by myself.
 
     Args:
     city_diccionary, city_name, coordinates, database, distance
